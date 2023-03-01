@@ -25,8 +25,6 @@ Check out the wiki [page](https://github.com/Rubiksman78/RenAI-Chat/wiki).
 - Clone your character voice with a Text to Speech module using extracts of voiced dialogues
 - Talk with your own voice thanks to Speech recognition
 
-## :star2: Pygmalion chatbots
-
 ## :microphone: Customize voice
 
 For Your TTS model (worse but faster, ~5s per turn):
