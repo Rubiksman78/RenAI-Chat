@@ -1,4 +1,4 @@
-<h1 align="center"> :computer: RenAI Chat </h1>
+<h1 align="center"> :email: RenAI Chat </h1>
 
 <p align="center">
   <a href="https://github.com/Rubiksman78/RenAI-Chat/releases/latest">
