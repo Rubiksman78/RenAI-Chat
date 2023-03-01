@@ -8,7 +8,7 @@ import yaml
 
 logger = logging.getLogger(__name__)
 
-with open("pygmalion/pygmalion_config.yml", "r") as f:
+with open("chatbot/chatbot_config.yml", "r") as f:
         PYG_CONFIG = yaml.safe_load(f)
 
 USE_INT_8 = PYG_CONFIG["use_int_8"]

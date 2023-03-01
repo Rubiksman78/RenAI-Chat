@@ -15,7 +15,7 @@ root.configure(background='#333333')
 def get_input():
     global GAME_PATH
     global USE_TTS
-    global PYG_MODEL
+    global CHAT_MODEL
     global LAUNCH_YOURSELF
     global TTS_MODEL
     global USE_SPEECH_RECOGNITION
@@ -25,7 +25,7 @@ def get_input():
     USE_TTS = use_tts.get()
     GAME_PATH = game_path.get()
     LAUNCH_YOURSELF = launch_yourself.get()
-    PYG_MODEL = pyg_model.get()
+    CHAT_MODEL = chat_model.get()
     TTS_MODEL = tts_model.get()
     USE_SPEECH_RECOGNITION = use_speech_recognition.get()
     VOICE_SAMPLE_TORTOISE = voice_sample_tortoise.get()
@@ -39,7 +39,7 @@ other_frame.grid(row=5, column=0)
 use_tts = tk.StringVar()
 game_path = tk.StringVar()
 launch_yourself = tk.StringVar()
-pyg_model = tk.StringVar()
+chat_model = tk.StringVar()
 tts_model = tk.StringVar()
 use_speech_recognition = tk.StringVar()
 voice_sample_tortoise = tk.StringVar()
@@ -51,7 +51,7 @@ tk.Label(other_frame, text="Game Path",bg='#333333',fg='white').grid(row=1, colu
 tk.Label(other_frame, text="Launch Yourself",bg='#333333',fg='white').grid(row=1, column=3)
 tk.Label(other_frame, text="Use TTS",bg='#333333',fg='white').grid(row=3, column=0)
 tk.Label(other_frame, text="TTS model",bg='#333333',fg='white').grid(row=3, column=3)
-tk.Label(other_frame, text="Pygmalion Model",bg='#333333',fg='white').grid(row=4, column=0)
+tk.Label(other_frame, text="Chatbot Model",bg='#333333',fg='white').grid(row=4, column=0)
 tk.Label(other_frame, text="Use Speech Recognition",bg='#333333',fg='white').grid(row=6, column=0)
 tk.Label(other_frame, text="Voice Sample (Tortoise)",bg='#333333',fg='white').grid(row=7, column=0)
 tk.Label(other_frame, text="Voice Sample (Your TTS)",bg='#333333',fg='white').grid(row=7, column=3)
@@ -63,9 +63,9 @@ tk.Entry(other_frame, textvariable=game_path,width=25).grid(row=1, column=1)
 #Scrollable Inputs
 all_models = os.listdir("chatbot_models")
 all_models = [x for x in all_models if not x.endswith(".txt")]
-pyg_menu = tk.OptionMenu(other_frame, pyg_model, *all_models)
-pyg_menu.config( bg='white',fg='black')
-pyg_menu.grid(row=4, column=1)
+chat_menu = tk.OptionMenu(other_frame, chat_model, *all_models)
+chat_menu.config( bg='white',fg='black')
+chat_menu.grid(row=4, column=1)
 
 tts_menu = tk.OptionMenu(other_frame, tts_model, "Your TTS", "Tortoise TTS")
 tts_menu.config( bg='white',fg='black')
@@ -108,7 +108,7 @@ if not os.path.exists("config.json"):
     #Set default values
     launch_yourself.set(0)
     use_tts.set(0)
-    pyg_model.set("NO_MODEL_SET")
+    chat_model.set("NO_MODEL_SET")
     tts_model.set("Your TTS")
     use_speech_recognition.set(0)
     voice_sample_tortoise.set("SELECT_A_VOICE")
@@ -121,7 +121,7 @@ else:
         USE_TTS = config["USE_TTS"]
         LAUNCH_YOURSELF = config["LAUNCH_YOURSELF"]
         TTS_MODEL = config["TTS_MODEL"]
-        PYG_MODEL = config["PYG_MODEL"]
+        CHAT_MODEL = config["CHAT_MODEL"]
         USE_SPEECH_RECOGNITION = config["USE_SPEECH_RECOGNITION"]
         VOICE_SAMPLE_TORTOISE = config["VOICE_SAMPLE_TORTOISE"]
         VOICE_SAMPLE_COQUI = config["VOICE_SAMPLE_COQUI"]
@@ -129,7 +129,7 @@ else:
     #Set saved values
     launch_yourself.set(LAUNCH_YOURSELF)
     use_tts.set(USE_TTS)
-    pyg_model.set(PYG_MODEL)
+    chat_model.set(CHAT_MODEL)
     tts_model.set(TTS_MODEL)
     use_speech_recognition.set(USE_SPEECH_RECOGNITION)
     voice_sample_tortoise.set(VOICE_SAMPLE_TORTOISE)
@@ -143,12 +143,12 @@ USE_TTS = int(USE_TTS)
 LAUNCH_YOURSELF = int(LAUNCH_YOURSELF)
 USE_SPEECH_RECOGNITION = int(USE_SPEECH_RECOGNITION)
 
-#Save model chosen in pygmalion config
-with open("pygmalion/pygmalion_config.yml", "r") as f:
-    config_pyg = yaml.safe_load(f)
-config_pyg["model_name"] = "chatbot_models/" + PYG_MODEL
-with open("pygmalion/pygmalion_config.yml", "w") as f:
-    yaml.dump(config_pyg, f)
+#Save model chosen in chatbot config
+with open("chatbot/chatbot_config.yml", "r") as f:
+    config_chat = yaml.safe_load(f)
+config_chat["model_name"] = "chatbot_models/" + CHAT_MODEL
+with open("chatbot/chatbot_config.yml", "w") as f:
+    yaml.dump(config_chat, f)
 
 #Save config to a json file
 CONFIG = {
@@ -156,7 +156,7 @@ CONFIG = {
     "USE_TTS": USE_TTS,
     "LAUNCH_YOURSELF": LAUNCH_YOURSELF,
     "TTS_MODEL": TTS_MODEL,
-    "PYG_MODEL": PYG_MODEL,
+    "CHAT_MODEL": CHAT_MODEL,
     "USE_SPEECH_RECOGNITION": USE_SPEECH_RECOGNITION,
     "VOICE_SAMPLE_TORTOISE": VOICE_SAMPLE_TORTOISE,
     "VOICE_SAMPLE_COQUI": VOICE_SAMPLE_COQUI,

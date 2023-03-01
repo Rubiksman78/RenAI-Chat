@@ -11,7 +11,7 @@
 
 This project aims to create a fun interface to use conversational models in the form of a Visual Novel in Renpy.
 It's using multiple AI models:
-- [Pygmalion](https://huggingface.co/PygmalionAI) conversational AI based on GPT-J Finetuning
+- [Pygmalion](https://huggingface.co/PygmalionAI) conversational AI or other Huggingface models
 - [TTS Coqui-AI](https://github.com/coqui-ai/TTS) and [Tortoise-TTS](https://github.com/152334H/tortoise-tts-fast) for Text to Speech
 - [OpenAI Whisper](https://github.com/openai/whisper) with [microphone option](https://github.com/mallorbc/whisper_mic) for Speech to Text
 
@@ -86,10 +86,9 @@ To setup all the libraries:
     cd ../
     ```
 - `simpleaudio` or other packages might need to install Visual Studio C++ Tools too (see tutorial [here](https://stackoverflow.com/questions/64261546/how-to-solve-error-microsoft-visual-c-14-0-or-greater-is-required-when-inst)), for `simpleaudio` follow [this](https://stackoverflow.com/questions/67312738/error-command-errored-out-with-exit-status-1-python-when-installing-simple)
-- If you want to use Pygmalion models, follow these intructions:
-  - To use `int8` i.e. models taking less GPU RAM with `bitsandbytes`:
-     - Download these 2 dll files from [here](https://github.com/DeXtmL/bitsandbytes-win-prebuilt). Move those files in your python packages folder, on Windows it is something like `C:\Users\MyName\AppData\Local\Programs\Python\Python39\Lib\site-packages\bitsandbytes`
-     - Edit `bitsandbytes\cuda_setup\main.py`: 
-       - Change `ct.cdll.LoadLibrary(binary_path)` to `ct.cdll.LoadLibrary(str(binary_path))` two times in the file.
-       - Replace the this line ```if not torch.cuda.is_available(): return 'libsbitsandbytes_cpu.so', None, None, None, None``` with ```if torch.cuda.is_available(): return 'libbitsandbytes_cuda116.dll', None, None, None, None```
+- If you want to use Huggingface models with int8, follow these intructions:
+  - Download these 2 dll files from [here](https://github.com/DeXtmL/bitsandbytes-win-prebuilt). Move those files in your python packages folder, on Windows it is something like `C:\Users\MyName\AppData\Local\Programs\Python\Python39\Lib\site-packages\bitsandbytes`
+  - Edit `bitsandbytes\cuda_setup\main.py`: 
+    - Change `ct.cdll.LoadLibrary(binary_path)` to `ct.cdll.LoadLibrary(str(binary_path))` two times in the file.
+    - Replace the this line ```if not torch.cuda.is_available(): return 'libsbitsandbytes_cpu.so', None, None, None, None``` with ```if torch.cuda.is_available(): return 'libbitsandbytes_cuda116.dll', None, None, None, None```
 - For troubleshooting and other issues, don't hesitate to submit an issue

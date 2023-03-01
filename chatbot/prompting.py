@@ -1,7 +1,7 @@
 import logging
 import typing as t
 
-from pygmalion.parsing import parse_messages_from_str
+from chatbot.parsing import parse_messages_from_str
 
 logger = logging.getLogger(__name__)
 
