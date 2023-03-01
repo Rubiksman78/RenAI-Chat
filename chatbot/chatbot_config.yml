@@ -1,8 +1,8 @@
-char_json: monika.json
+char_json:
 context_size: 8
 do_sample: true
 max_new_tokens: 100
-model_name: chatbot_models/gpt-neo-2.7b-monika-fp16
+model_name: 
 repetition_penalty: 1.2
 temperature: 0.65
 top_k: 0
