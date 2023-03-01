@@ -9,9 +9,9 @@ import yaml
 logger = logging.getLogger(__name__)
 
 with open("chatbot/chatbot_config.yml", "r") as f:
-        PYG_CONFIG = yaml.safe_load(f)
+        CHAT_CONFIG = yaml.safe_load(f)
 
-USE_INT_8 = PYG_CONFIG["use_int_8"]
+USE_INT_8 = CHAT_CONFIG["use_int_8"]
 
 def build_model_and_tokenizer_for(
     model_name: str

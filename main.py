@@ -42,28 +42,28 @@ from run_chatbot import inference_fn
 import gc 
 
 with open("chatbot/chatbot_config.yml", "r") as f:
-    PYG_CONFIG = yaml.safe_load(f)
+    CHAT_CONFIG = yaml.safe_load(f)
 
 with open(f"char_json/{CHARACTER_JSON}", "r") as f:
     char_settings = json.load(f)
 f.close()
 
-model_name = PYG_CONFIG["model_name"]
+model_name = CHAT_CONFIG["model_name"]
 gc.collect()
 torch.cuda.empty_cache()
-pyg_model, tokenizer = build_model_and_tokenizer_for(model_name)
+chat_model, tokenizer = build_model_and_tokenizer_for(model_name)
 
 generation_settings = {
-    "max_new_tokens": PYG_CONFIG["max_new_tokens"],
-    "temperature": PYG_CONFIG["temperature"],
-    "repetition_penalty": PYG_CONFIG["repetition_penalty"],
-    "top_p": PYG_CONFIG["top_p"],
-    "top_k": PYG_CONFIG["top_k"],
-    "do_sample": PYG_CONFIG["do_sample"],
-    "typical_p":PYG_CONFIG["typical_p"],
+    "max_new_tokens": CHAT_CONFIG["max_new_tokens"],
+    "temperature": CHAT_CONFIG["temperature"],
+    "repetition_penalty": CHAT_CONFIG["repetition_penalty"],
+    "top_p": CHAT_CONFIG["top_p"],
+    "top_k": CHAT_CONFIG["top_k"],
+    "do_sample": CHAT_CONFIG["do_sample"],
+    "typical_p":CHAT_CONFIG["typical_p"],
 }
 
-context_size = PYG_CONFIG["context_size"]
+context_size = CHAT_CONFIG["context_size"]
 
 with open("chat_history.txt", "a") as chat_history:
     chat_history.write("Conversation started at: " + time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()) + "\n")
@@ -221,7 +221,7 @@ def listenToClient(client):
     name = "User"
     clients[client] = name
     launched = False
-    pyg_count = 0
+    chat_count = 0
     play_obj = None
     if os.path.exists("char_history.txt"):
         history = open("char_history.txt","r").read()
@@ -262,23 +262,23 @@ def listenToClient(client):
             print("User: "+received_msg)
     
             while True: 
-                if pyg_count == 0:
+                if chat_count == 0:
                     sendMessage("server_ok".encode("utf-8"))
                     ok_ready = client.recv(BUFSIZE).decode("utf-8")
-                    bot_message = inference_fn(pyg_model,tokenizer,history, "",generation_settings,char_settings,history_length=context_size,count=pyg_count)
+                    bot_message = inference_fn(chat_model,tokenizer,history, "",generation_settings,char_settings,history_length=context_size,count=chat_count)
                 else:
-                    bot_message = inference_fn(pyg_model,tokenizer,history, received_msg,generation_settings,char_settings,history_length=context_size,count=pyg_count)
+                    bot_message = inference_fn(chat_model,tokenizer,history, received_msg,generation_settings,char_settings,history_length=context_size,count=chat_count)
                     history = history + "\n" + f"You: {received_msg}" + "\n" + f"{bot_message}"
                 if received_msg != "QUIT":   
                     if received_msg == "REGEN":
                         history.replace("\n" + f"You: {received_msg}" + "\n" + f"{bot_message}","")
-                        bot_message = inference_fn(pyg_model,tokenizer,history, received_msg,generation_settings,char_settings,history_length=context_size,count=pyg_count) 
+                        bot_message = inference_fn(chat_model,tokenizer,history, received_msg,generation_settings,char_settings,history_length=context_size,count=chat_count) 
                     bot_message = bot_message.replace("<USER>","Player")
                     play_obj = play_TTS(step,bot_message,play_obj)
                     print("Sent: "+ bot_message)    
                     send_answer(received_msg,bot_message)
-                    pyg_count += 1
-                    if pyg_count > 1:
+                    chat_count += 1
+                    if chat_count > 1:
                         with open("chat_history.txt", "a",encoding="utf-8") as f:
                             f.write(f"You: {received_msg}" + "\n" + f'{char_settings["char_name"]}: {bot_message}' + "\n")
                 break                  
