@@ -18,7 +18,7 @@ It's using multiple AI models:
 - Emotion detection with the webcam with a model from [HSEmotion](https://github.com/HSE-asavchenko/face-emotion-recognition) 
 - NLI Classification with [deberta](https://huggingface.co/sileod/deberta-v3-base-tasksource-nli)
 
-# User friendly mode
+# User installation
 
 ## :boom: Installation 
 
