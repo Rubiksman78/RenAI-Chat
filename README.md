@@ -29,6 +29,7 @@ Check out the wiki [page](https://github.com/Rubiksman78/RenAI-Chat/wiki).
 
 ## :eyeglasses: How to add chatbot models
 
+- Check the [wiki](https://github.com/Rubiksman78/RenAI-Chat/wiki/Chatbots-info) to setup your GPU and for pratical info about chatbots to use
 - On Huggingface website go to the model page, for example `https://huggingface.co/PygmalionAI/pygmalion-2.7b`
 
 - Follow the instructions to download the model like this on your Command Prompt or Powershell opened wherever you want:
