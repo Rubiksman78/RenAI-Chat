@@ -7,9 +7,6 @@
    <a href="https://github.com/Rubiksman78/RenAI-Chat/releases">
     <img alt="Release downloads" src="https://img.shields.io/github/downloads/Rubiksman78/RenAI-Chat/total">
   </a>
-  <a href="https://discord.gg/2RsPuaDxEn">
-    <img alt="Latest release" src="https://img.shields.io/badge/Discord-Join%20the%20Server%20!-brightgreen">
-  </a>
 </p>
 
 This project aims to create a fun interface to use conversational models in the form of a Visual Novel in Renpy.
