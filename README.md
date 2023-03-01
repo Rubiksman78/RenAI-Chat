@@ -14,9 +14,6 @@ It's using multiple AI models:
 - [Pygmalion](https://huggingface.co/PygmalionAI) conversational AI based on GPT-J Finetuning
 - [TTS Coqui-AI](https://github.com/coqui-ai/TTS) and [Tortoise-TTS](https://github.com/152334H/tortoise-tts-fast) for Text to Speech
 - [OpenAI Whisper](https://github.com/openai/whisper) with [microphone option](https://github.com/mallorbc/whisper_mic) for Speech to Text
-- [Emotion detection from text model](https://huggingface.co/michellejieli/emotion_text_classifier) is also used linked with the chatbot
-- Emotion detection with the webcam with a model from [HSEmotion](https://github.com/HSE-asavchenko/face-emotion-recognition) 
-- NLI Classification with [deberta](https://huggingface.co/sileod/deberta-v3-base-tasksource-nli)
 
 # User installation
 
@@ -24,7 +21,6 @@ It's using multiple AI models:
 
 ## :fire: Features
 
-- Allow your favorite character to finally see you through the webcam and react to your emotions
 - Speak without scripted text using the latest chatbots
 - Clone your character voice with a Text to Speech module using extracts of voiced dialogues
 - Talk with your own voice thanks to Speech recognition
@@ -39,10 +35,6 @@ You can change the voice used by placing extracts in the `coquiai_audios` folder
 For Tortoise TTS model (better but slower, ~40s per turn): You can change the voice samples in `tortoise_voices_` folder. Create your own character by adding a folder with the name of your character and put the audio samples in it. The samples must be around 10 seconds long and at the number of 5 maximum. Prefer `.wav` files too.
 
 On CPU, it can take 10x more time to generate the voice (Tortoise TTS can have unexpected behaviour on CPU)
-
-# Demonstrations
-
-## :cinema: Video Demonstration
 
 # Python installation
 
