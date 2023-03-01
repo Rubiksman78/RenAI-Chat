@@ -17,7 +17,7 @@ It's using multiple AI models:
 
 # User installation
 
-## :boom: Installation 
+Check out the wiki [page](https://github.com/Rubiksman78/RenAI-Chat/wiki).
 
 ## :fire: Features
 
