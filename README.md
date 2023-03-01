@@ -15,7 +15,9 @@ It's using multiple AI models:
 - [TTS Coqui-AI](https://github.com/coqui-ai/TTS) and [Tortoise-TTS](https://github.com/152334H/tortoise-tts-fast) for Text to Speech
 - [OpenAI Whisper](https://github.com/openai/whisper) with [microphone option](https://github.com/mallorbc/whisper_mic) for Speech to Text
 
-# User installation
+# Overview
+
+## :boom: Installation
 
 Check out the wiki [page](https://github.com/Rubiksman78/RenAI-Chat/wiki).
 
@@ -25,6 +27,18 @@ Check out the wiki [page](https://github.com/Rubiksman78/RenAI-Chat/wiki).
 - Clone your character voice with a Text to Speech module using extracts of voiced dialogues
 - Talk with your own voice thanks to Speech recognition
 
+## :eyeglasses: How to add chatbot models
+
+- On Huggingface website go to the model page, for example `https://huggingface.co/PygmalionAI/pygmalion-2.7b`
+
+- Follow the instructions to download the model like this on your Command Prompt or Powershell opened wherever you want:
+```
+git lfs install
+git clone https://huggingface.co/PygmalionAI/pygmalion-2.7b
+```
+- Once the download is finished, put the folder created in `chatbot_models` in the RenAIChat folder. You will be able to choose it in your next login !
+
+
 ## :microphone: Customize voice
 
 For Your TTS model (worse but faster, ~5s per turn):
@@ -33,6 +47,10 @@ You can change the voice used by placing extracts in the `coquiai_audios` folder
 For Tortoise TTS model (better but slower, ~40s per turn): You can change the voice samples in `tortoise_voices_` folder. Create your own character by adding a folder with the name of your character and put the audio samples in it. The samples must be around 10 seconds long and at the number of 5 maximum. Prefer `.wav` files too.
 
 On CPU, it can take 10x more time to generate the voice (Tortoise TTS can have unexpected behaviour on CPU)
+
+## :camera: Customize game appearance
+
+In your RenAIChat folder with the Renpy files, add a transparent sprite of your character with the filename `char.png` and add a background named `bg.png` in the folder `game/images`
 
 # Python installation
 
