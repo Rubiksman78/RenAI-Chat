@@ -57,11 +57,13 @@ In your RenAIChat folder with the Renpy files, add a transparent sprite of your 
 
 Put the json of your character in the folder `char_json` in the format:
 ```
-{"char_name":...,
+{
+"char_name":...,
 "char_persona":...,
 "char_greeting":...,
 "world_scenario":...,
-"example_dialogue":"<START>\nYou:... \nCharName:...\n..."}
+"example_dialogue":"<START>\nYou:... \nCharName:...\n..."
+}
 ```
 
 # Python installation
