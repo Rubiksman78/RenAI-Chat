@@ -27,6 +27,18 @@ Check out the wiki [page](https://github.com/Rubiksman78/RenAI-Chat/wiki).
 - Clone your character voice with a Text to Speech module using extracts of voiced dialogues
 - Talk with your own voice thanks to Speech recognition
 
+## :eyeglasses: How to add chatbot models
+
+- On Huggingface website go to the model page, for example `https://huggingface.co/PygmalionAI/pygmalion-2.7b`
+
+- Follow the instructions to download the model like this on your Command Prompt or Powershell opened wherever you want:
+```
+git lfs install
+git clone https://huggingface.co/PygmalionAI/pygmalion-2.7b
+```
+- Once the download is finished, put the folder created in `chatbot_models` in the RenAIChat folder. You will be able to choose it in your next login !
+
+
 ## :microphone: Customize voice
 
 For Your TTS model (worse but faster, ~5s per turn):
