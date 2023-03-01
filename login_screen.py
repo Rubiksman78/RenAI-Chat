@@ -9,17 +9,14 @@ save_ids = os.path.exists("save_text.txt")
 
 root = tk.Tk()
 root.title("RenAI Chat Login")
-root.geometry("700x300")
+root.geometry("700x250")
 root.configure(background='#333333')
 
 def get_input():
     global GAME_PATH
     global USE_TTS
-    global USE_CAMERA
-    global TIME_INTERVALL
     global PYG_MODEL
     global LAUNCH_YOURSELF
-    global USE_ACTIONS
     global TTS_MODEL
     global USE_SPEECH_RECOGNITION
     global VOICE_SAMPLE_TORTOISE
@@ -28,10 +25,7 @@ def get_input():
     USE_TTS = use_tts.get()
     GAME_PATH = game_path.get()
     LAUNCH_YOURSELF = launch_yourself.get()
-    USE_CAMERA = use_camera.get()
-    TIME_INTERVALL = time_intervall.get()
     PYG_MODEL = pyg_model.get()
-    USE_ACTIONS = use_actions.get()
     TTS_MODEL = tts_model.get()
     USE_SPEECH_RECOGNITION = use_speech_recognition.get()
     VOICE_SAMPLE_TORTOISE = voice_sample_tortoise.get()
@@ -45,10 +39,7 @@ other_frame.grid(row=5, column=0)
 use_tts = tk.StringVar()
 game_path = tk.StringVar()
 launch_yourself = tk.StringVar()
-use_camera = tk.StringVar()
-time_intervall = tk.StringVar()
 pyg_model = tk.StringVar()
-use_actions = tk.StringVar()
 tts_model = tk.StringVar()
 use_speech_recognition = tk.StringVar()
 voice_sample_tortoise = tk.StringVar()
@@ -58,12 +49,9 @@ character_json = tk.StringVar()
 #General Settings
 tk.Label(other_frame, text="Game Path",bg='#333333',fg='white').grid(row=1, column=0)
 tk.Label(other_frame, text="Launch Yourself",bg='#333333',fg='white').grid(row=1, column=3)
-tk.Label(other_frame, text="Use Actions",bg='#333333',fg='white').grid(row=2, column=0)
 tk.Label(other_frame, text="Use TTS",bg='#333333',fg='white').grid(row=3, column=0)
 tk.Label(other_frame, text="TTS model",bg='#333333',fg='white').grid(row=3, column=3)
 tk.Label(other_frame, text="Pygmalion Model",bg='#333333',fg='white').grid(row=4, column=0)
-tk.Label(other_frame, text="Use Camera",bg='#333333',fg='white').grid(row=5, column=0)
-tk.Label(other_frame, text="Time Intervall For Camera",bg='#333333',fg='white').grid(row=5,column=3)
 tk.Label(other_frame, text="Use Speech Recognition",bg='#333333',fg='white').grid(row=6, column=0)
 tk.Label(other_frame, text="Voice Sample (Tortoise)",bg='#333333',fg='white').grid(row=7, column=0)
 tk.Label(other_frame, text="Voice Sample (Your TTS)",bg='#333333',fg='white').grid(row=7, column=3)
@@ -71,7 +59,6 @@ tk.Label(other_frame, text="Character JSON",bg='#333333',fg='white').grid(row=4,
 
 #Textual Inputs
 tk.Entry(other_frame, textvariable=game_path,width=25).grid(row=1, column=1)
-tk.Entry(other_frame, textvariable=time_intervall,width=10).grid(row=5, column=4)
 
 #Scrollable Inputs
 all_models = os.listdir("chatbot_models")
@@ -106,14 +93,8 @@ character_menu.grid(row=4, column=3)
 tk.Radiobutton(other_frame, text="Yes", variable=launch_yourself, value=True,bg='#333333',activeforeground='white',fg='white',activebackground="#333333",selectcolor='#333333').grid(row=1, column=4)
 tk.Radiobutton(other_frame, text="No", variable=launch_yourself, value=False,bg='#333333',activeforeground='white',fg='white',activebackground="#333333",selectcolor='#333333').grid(row=1, column=5)
 
-tk.Radiobutton(other_frame, text="Yes", variable=use_actions, value=True,bg='#333333',activeforeground='white',fg='white',activebackground="#333333",selectcolor='#333333').grid(row=2, column=1)
-tk.Radiobutton(other_frame, text="No", variable=use_actions, value=False,bg='#333333',activeforeground='white',fg='white',activebackground="#333333",selectcolor='#333333').grid(row=2, column=2)
-
 tk.Radiobutton(other_frame, text="Yes", variable=use_tts, value=True,bg='#333333',activeforeground='white',fg='white',activebackground="#333333",selectcolor='#333333').grid(row=3, column=1)
 tk.Radiobutton(other_frame, text="No", variable=use_tts, value=False,bg='#333333',activeforeground='white',fg='white',activebackground="#333333",selectcolor='#333333').grid(row=3, column=2)
-
-tk.Radiobutton(other_frame, text="Yes", variable=use_camera, value=True,bg='#333333',activeforeground='white',fg='white',activebackground="#333333",selectcolor='#333333').grid(row=5, column=1)
-tk.Radiobutton(other_frame, text="No", variable=use_camera, value=False,bg='#333333',activeforeground='white',fg='white',activebackground="#333333",selectcolor='#333333').grid(row=5, column=2)
 
 tk.Radiobutton(other_frame, text="Yes", variable=use_speech_recognition, value=True,bg='#333333',activeforeground='white',fg='white',activebackground="#333333",selectcolor='#333333').grid(row=6, column=1)
 tk.Radiobutton(other_frame, text="No", variable=use_speech_recognition, value=False,bg='#333333',activeforeground='white',fg='white',activebackground="#333333",selectcolor='#333333').grid(row=6, column=2)
@@ -126,11 +107,8 @@ button.place(relx=0.5, rely=0.95, anchor=tk.CENTER)
 if not os.path.exists("config.json"):
     #Set default values
     launch_yourself.set(0)
-    time_intervall.set("10")
     use_tts.set(0)
-    use_camera.set(0)
     pyg_model.set("NO_MODEL_SET")
-    use_actions.set(0)
     tts_model.set("Your TTS")
     use_speech_recognition.set(0)
     voice_sample_tortoise.set("SELECT_A_VOICE")
@@ -141,10 +119,7 @@ else:
         config = json.load(f)
         GAME_PATH = config["GAME_PATH"]
         USE_TTS = config["USE_TTS"]
-        USE_CAMERA = config["USE_CAMERA"]
-        TIME_INTERVALL = config["TIME_INTERVALL"]
         LAUNCH_YOURSELF = config["LAUNCH_YOURSELF"]
-        USE_ACTIONS = config["USE_ACTIONS"]
         TTS_MODEL = config["TTS_MODEL"]
         PYG_MODEL = config["PYG_MODEL"]
         USE_SPEECH_RECOGNITION = config["USE_SPEECH_RECOGNITION"]
@@ -153,11 +128,8 @@ else:
         CHARACTER_JSON = config["CHARACTER_JSON"]
     #Set saved values
     launch_yourself.set(LAUNCH_YOURSELF)
-    time_intervall.set(TIME_INTERVALL)
     use_tts.set(USE_TTS)
-    use_camera.set(USE_CAMERA)
     pyg_model.set(PYG_MODEL)
-    use_actions.set(USE_ACTIONS)
     tts_model.set(TTS_MODEL)
     use_speech_recognition.set(USE_SPEECH_RECOGNITION)
     voice_sample_tortoise.set(VOICE_SAMPLE_TORTOISE)
@@ -168,10 +140,7 @@ root.mainloop()
 
 #Convert string to int (0 or 1, False or True)
 USE_TTS = int(USE_TTS)
-USE_CAMERA = int(USE_CAMERA)
-TIME_INTERVALL = int(TIME_INTERVALL)
 LAUNCH_YOURSELF = int(LAUNCH_YOURSELF)
-USE_ACTIONS = int(USE_ACTIONS)
 USE_SPEECH_RECOGNITION = int(USE_SPEECH_RECOGNITION)
 
 #Save model chosen in pygmalion config
@@ -185,10 +154,7 @@ with open("pygmalion/pygmalion_config.yml", "w") as f:
 CONFIG = {
     "GAME_PATH": GAME_PATH,
     "USE_TTS": USE_TTS,
-    "USE_CAMERA": USE_CAMERA,
-    "TIME_INTERVALL": TIME_INTERVALL,
     "LAUNCH_YOURSELF": LAUNCH_YOURSELF,
-    "USE_ACTIONS": USE_ACTIONS,
     "TTS_MODEL": TTS_MODEL,
     "PYG_MODEL": PYG_MODEL,
     "USE_SPEECH_RECOGNITION": USE_SPEECH_RECOGNITION,
