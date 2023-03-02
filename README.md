@@ -49,11 +49,7 @@ For Tortoise TTS model (better but slower, ~40s per turn): You can change the vo
 
 On CPU, it can take 10x more time to generate the voice (Tortoise TTS can have unexpected behaviour on CPU)
 
-## :camera: Customize game appearance
-
-In your RenAIChat folder with the Renpy files, add a transparent sprite of your character with the filename `char.png` and add a background named `bg.png` in the folder `game/images`. Don't forget to resize your BG to 1920x1080 and your character to the size you want (without being more than 1920x1080).
-
-## Customize character json
+## :paperclip: Customize character json
 
 Put the json of your character in the folder `char_json` in the format:
 ```
@@ -65,6 +61,10 @@ Put the json of your character in the folder `char_json` in the format:
 "example_dialogue":"<START>\nYou:... \nCharName:...\n..."
 }
 ```
+
+## :camera: Customize game appearance
+
+In your RenAIChat folder with the Renpy files (so the other zip file `RenAIChat-version-pc/mac`), add a transparent sprite of your character with the filename `char.png` and add a background named `bg.png` in the folder `game/images`. Don't forget to resize your BG to 1920x1080 and your character to the size you want (without being more than 1920x1080).
 
 # Python installation
 
