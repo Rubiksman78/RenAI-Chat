@@ -185,7 +185,7 @@ uni_chr_re = re.compile(r'\\u[0-9a-fA-F]{4}')
 
 #Launch the game
 if not LAUNCH_YOURSELF:
-    subprocess.Popen(GAME_PATH+'/DDLC.exe')
+    subprocess.Popen(GAME_PATH+'/RenAIChat.exe')
 
 def listen():
 	""" Wait for incoming connections """
