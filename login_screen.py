@@ -79,6 +79,7 @@ voice_menu.grid(row=7, column=1)
 
 all_voices_coquiai = os.listdir("coquiai_audios")
 all_voices_coquiai = [x for x in all_voices_coquiai if x.endswith(".wav")]
+all_voices_coquiai = all_voices_coquiai.append("NO_VOICE_HERE")
 voice_menu = tk.OptionMenu(other_frame, voice_sample_coqui, *all_voices_coquiai)
 voice_menu.config( bg='white',fg='black')
 voice_menu.grid(row=7, column=4)
