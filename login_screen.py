@@ -63,8 +63,10 @@ tk.Entry(other_frame, textvariable=game_path,width=25).grid(row=1, column=1)
 #Scrollable Inputs
 all_models = os.listdir("chatbot_models")
 all_models = [x for x in all_models if not x.endswith(".txt")]
+if len(all_models) == 0:
+    all_models = ["No models found"]
 chat_menu = tk.OptionMenu(other_frame, chat_model, *all_models)
-chat_menu.config( bg='white',fg='black')
+chat_menu.config(bg='white',fg='black')
 chat_menu.grid(row=4, column=1)
 
 tts_menu = tk.OptionMenu(other_frame, tts_model, "Your TTS", "Tortoise TTS")
@@ -79,6 +81,8 @@ voice_menu.grid(row=7, column=1)
 
 all_voices_coquiai = os.listdir("coquiai_audios")
 all_voices_coquiai = [x for x in all_voices_coquiai if x.endswith(".wav")]
+if len(all_voices_coquiai) == 0:
+    all_voices_coquiai = ["No voices found"]
 voice_menu = tk.OptionMenu(other_frame, voice_sample_coqui, *all_voices_coquiai)
 voice_menu.config( bg='white',fg='black')
 voice_menu.grid(row=7, column=4)
