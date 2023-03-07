@@ -2,7 +2,7 @@ char_json: null
 context_size: 8
 do_sample: true
 max_new_tokens: 100
-model_name: chatbot_models/gpt-neo-2.7b-monika-fp16
+model_name: chatbot_models/No models found
 repetition_penalty: 1.2
 temperature: 0.65
 top_k: 0
