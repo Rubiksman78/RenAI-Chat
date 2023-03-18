@@ -101,4 +101,5 @@ To setup all the libraries:
   - Edit `bitsandbytes\cuda_setup\main.py`: 
     - Change `ct.cdll.LoadLibrary(binary_path)` to `ct.cdll.LoadLibrary(str(binary_path))` two times in the file.
     - Replace the this line ```if not torch.cuda.is_available(): return 'libsbitsandbytes_cpu.so', None, None, None, None``` with ```if torch.cuda.is_available(): return 'libbitsandbytes_cuda116.dll', None, None, None, None```
+- Run the script with `python main.py`
 - For troubleshooting and other issues, don't hesitate to submit an issue
