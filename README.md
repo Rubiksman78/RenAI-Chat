@@ -78,7 +78,7 @@ To setup all the libraries:
     ```
 - If you have a CUDA compatible GPU, run this too:
     ```
-    pip install torch torchvision torchaudio --extra-index-url https://download.pytorch.org/whl/cu117
+    pip install --force torch torchvision torchaudio --extra-index-url https://download.pytorch.org/whl/cu117
     ```
 - If there was an error returned during the installation of the packages, delete the corresponding line in `requirements.txt` and dowload the package concerned manually
 - To download TTS (with Coqui AI TTS), run these commands:
