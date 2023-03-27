@@ -6,9 +6,9 @@ import time
 import simpleaudio as sa
 
 try:
-   from tts_api import my_TTS
+    from tts_api import my_TTS
 except:
-   my_TTS = None
+    my_TTS = None
 
 import torch
 import numpy as np
