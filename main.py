@@ -5,7 +5,10 @@ import subprocess
 import time
 import simpleaudio as sa
 
-from tts_api import my_TTS
+try:
+   from tts_api import my_TTS
+except:
+   my_TTS = None
 
 import torch
 import numpy as np
